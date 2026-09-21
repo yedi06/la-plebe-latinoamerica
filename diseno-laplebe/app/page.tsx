@@ -207,10 +207,10 @@ export default function V3() {
       <div className="lg:col-span-2">
         <div className={`mt-4 border-t ${HAIRLINE} pt-6`}>
           <h2 className="font-display text-[clamp(1.35rem,5.2vw,2.3rem)] uppercase leading-[0.95] tracking-[-.03em]">
-            Historias que grabamos
+            Míralo tú mismo
           </h2>
           <p className="mt-2 max-w-[54ch] text-[13.5px] leading-relaxed text-[rgb(var(--fg-muted))]">
-            Cada entrega queda registrada. Estas son algunas.
+            No hay nada que contar que no puedas ver. Cada entrega queda grabada.
           </p>
 
           <GrillaTikTok videos={TIKTOKS} limite={4} className="mt-5" />
