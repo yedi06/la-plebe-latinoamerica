@@ -486,6 +486,7 @@ export const LOGOS_DISPONIBLES = [
   'bcp', 'bbva', 'interbank', 'scotiabank', 'banbif',
   'visa', 'mastercard', 'amex', 'diners',
   'applepay', 'googlepay', 'transferencia', 'pagoefectivo',
+  'billeteras', 'paypal',
 ];
 
 export const LOGOS_BILLETERAS = [
