@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { FRENTES, type Frente } from '@/lib/data';
+import { FRENTES, MONTOS_MENSUAL, MONTOS_UNICO, type Frente } from '@/lib/data';
 import { EASE, SPRING } from '@/components/motion';
 import { BotonPrincipal } from '@/components/ui/Boton';
 import { Checkout } from './Checkout';
@@ -63,6 +63,20 @@ export function DonationSheet({
   }, [abierto, onClose]);
 
   const nombreFrente = FRENTES.find((f) => f.id === frente)!.nombreCorto;
+
+  /*
+    Cada frecuencia tiene sus propios montos sugeridos. Al cambiar de una a otra
+    el monto anterior podía no existir en la lista nueva (S/ 25 es mensual, no
+    existe en "una vez"), y entonces ningún botón quedaba marcado aunque el
+    total sí mostrara esa cifra. Se recoloca en el equivalente de la otra lista.
+  */
+  const cambiarFrecuencia = (nueva: Frecuencia) => {
+    const antes = frecuencia === 'mensual' ? MONTOS_MENSUAL : MONTOS_UNICO;
+    const ahora = nueva === 'mensual' ? MONTOS_MENSUAL : MONTOS_UNICO;
+    const i = antes.indexOf(monto as never);
+    if (i !== -1) setMonto(ahora[i]);
+    setFrecuencia(nueva);
+  };
 
   return (
     <AnimatePresence>
@@ -152,17 +166,23 @@ export function DonationSheet({
 
             {/* Cuerpo */}
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5">
-              <AnimatePresence mode="wait" initial={false}>
+              {/*
+                Sin AnimatePresence ni animación de salida. Con `mode="wait"` el
+                contenido nuevo solo se monta cuando termina la salida del viejo;
+                si esa salida se interrumpe, el paso 2 queda en blanco. En un
+                flujo de donación eso es perder al donante, así que el contenido
+                se monta siempre y la transición es solo de entrada.
+              */}
+              <div>
                 {paso === 1 ? (
                   <motion.div
                     key="p1"
                     initial={{ opacity: 0, x: -14 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -14 }}
                     transition={{ duration: 0.28, ease: EASE }}
                     className="space-y-5"
                   >
-                    <FrecuenciaToggle valor={frecuencia} onChange={setFrecuencia} />
+                    <FrecuenciaToggle valor={frecuencia} onChange={cambiarFrecuencia} />
                     <SelectorMonto frecuencia={frecuencia} monto={monto} onChange={setMonto} />
                     <LecturaImpacto monto={monto} frente={frente} frecuencia={frecuencia} />
                   </motion.div>
@@ -171,7 +191,6 @@ export function DonationSheet({
                     key="p2"
                     initial={{ opacity: 0, x: 14 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 14 }}
                     transition={{ duration: 0.28, ease: EASE }}
                     className="space-y-6"
                   >
@@ -193,7 +212,7 @@ export function DonationSheet({
                     <Checkout monto={monto} frecuencia={frecuencia} frente={nombreFrente} />
                   </motion.div>
                 )}
-              </AnimatePresence>
+              </div>
             </div>
 
             {/* Pie */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { BANCOS, BILLETERAS, LOGOS_TARJETAS } from '@/lib/data';
 import { LogoPago } from '@/components/brand/LogoPago';
@@ -146,12 +146,13 @@ export function Checkout({
         })}
       </div>
 
-      <AnimatePresence mode="wait">
+      {/* Sin animación de salida: el contenido del medio elegido se monta
+          siempre, aunque se cambie de opción a media transición. */}
+      <div>
         <motion.div
           key={medio}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.24, ease: EASE }}
           className="mt-5"
         >
@@ -310,7 +311,7 @@ export function Checkout({
             </div>
           )}
         </motion.div>
-      </AnimatePresence>
+      </div>
 
       <p className={`mt-5 border-t ${HAIRLINE} pt-3 text-[11.5px] text-[rgb(var(--fg-muted))]`}>
         Donas <strong className="font-semibold text-[rgb(var(--fg))]">S/ {monto}</strong>
