@@ -16,7 +16,7 @@ type Medio = 'yape' | 'plin' | 'transferencia' | 'tarjeta' | 'paypal';
 const MEDIOS: { id: Medio; nombre: string; logo: string }[] = [
   { id: 'yape', nombre: 'Yape', logo: 'yape' },
   { id: 'plin', nombre: 'Plin', logo: 'plin' },
-  { id: 'transferencia', nombre: 'Transferencia', logo: 'transferencia' },
+  { id: 'transferencia', nombre: 'Banco', logo: 'transferencia' },
   { id: 'tarjeta', nombre: 'Tarjeta', logo: 'visa' },
   { id: 'paypal', nombre: 'PayPal', logo: 'applepay' },
 ];
@@ -94,7 +94,7 @@ export function Checkout({
               role="radio"
               aria-checked={on}
               onClick={() => setMedio(m.id)}
-              className={`flex flex-col items-center gap-1.5 border px-2 pb-2 pt-2.5 transition ${
+              className={`flex min-w-0 flex-col items-center gap-1.5 border px-1.5 pb-2 pt-2.5 transition ${
                 on
                   ? 'border-[rgb(var(--accent-fill))] bg-[rgb(var(--accent-fill)/.1)]'
                   : `${HAIRLINE} opacity-55 hover:opacity-100`
@@ -103,7 +103,7 @@ export function Checkout({
               <span className="flex h-9 w-full items-center justify-center">
                 <LogoPago id={m.logo} nombre={m.nombre} cubrir />
               </span>
-              <span className="text-[9.5px] font-semibold leading-tight">{m.nombre}</span>
+              <span className="w-full truncate text-[9.5px] font-semibold leading-tight">{m.nombre}</span>
             </button>
           );
         })}
