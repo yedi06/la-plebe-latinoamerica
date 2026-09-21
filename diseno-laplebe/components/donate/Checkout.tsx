@@ -48,7 +48,7 @@ function Casilla({
       onClick={onClick}
       aria-label={nombre}
       aria-pressed={activo}
-      className={`flex h-11 w-[86px] items-center justify-center rounded-xl border p-1.5 transition ${
+      className={`flex h-14 w-[100px] items-center justify-center border p-2 transition ${
         activo
           ? 'border-[rgb(var(--accent-fill))]'
           : `${HAIRLINE} opacity-45 hover:opacity-100`
@@ -118,7 +118,7 @@ export function Checkout({
       <div
         role="radiogroup"
         aria-label="Medio de pago"
-        className="grid max-w-[420px] grid-cols-3 gap-2"
+        className="grid max-w-[460px] grid-cols-3 gap-2"
       >
         {MEDIOS.map((m) => {
           const on = medio === m.id;
@@ -129,16 +129,16 @@ export function Checkout({
               role="radio"
               aria-checked={on}
               onClick={() => setMedio(m.id)}
-              className={`flex min-w-0 flex-col items-center gap-1.5 rounded-xl border px-1.5 pb-2 pt-2.5 transition ${
+              className={`flex min-w-0 flex-col items-center gap-2 border px-2 pb-2.5 pt-3 transition ${
                 on
                   ? 'border-[rgb(var(--accent-fill))]'
                   : `${HAIRLINE} opacity-45 hover:opacity-100`
               }`}
             >
-              <span className="flex h-9 w-full items-center justify-center">
+              <span className="flex h-11 w-full items-center justify-center">
                 <LogoPago id={m.logo} nombre={m.nombre} cubrir />
               </span>
-              <span className="w-full truncate text-[9.5px] font-semibold leading-tight">
+              <span className="w-full truncate text-[10.5px] font-semibold leading-tight">
                 {m.nombre}
               </span>
             </button>
@@ -171,7 +171,7 @@ export function Checkout({
               </div>
 
               <div className="mt-4 flex flex-col items-center gap-4 sm:flex-row sm:items-start">
-                <div className="w-[150px] shrink-0 rounded-xl bg-white p-3">
+                <div className="w-[150px] shrink-0 bg-white p-3">
                   <QrMock
                     seed={w.id}
                     className="h-auto w-full text-ink"
