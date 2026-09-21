@@ -71,10 +71,10 @@ export function TikTokEmbed({
   }
 
   return (
-    <figure className={className}>
+    <figure className={`group ${className}`}>
     <div
       ref={ref}
-      className="relative overflow-hidden bg-ink ring-1 ring-[rgb(var(--line)/var(--line-a))]"
+      className="relative overflow-hidden bg-ink ring-1 ring-[rgb(var(--line)/var(--line-a))] transition duration-500 group-hover:ring-[rgb(var(--accent-fill)/.6)]"
       style={{ aspectRatio: '9 / 16' }}
     >
       {/* Se mantiene debajo hasta que el reproductor confirma que cargó, para que
@@ -99,11 +99,17 @@ export function TikTokEmbed({
       )}
     </div>
     {descripcion && (
-      <figcaption className="mt-2.5">
-        <p className="font-display text-[12.5px] uppercase leading-tight tracking-tight">
+      <figcaption className="relative mt-4 pl-4">
+        {/* Filete de acento a la izquierda: da estructura sin encerrar el texto
+            en una caja, que es lo que apelmazaba la galeria. */}
+        <span
+          aria-hidden
+          className="absolute left-0 top-1 h-[calc(100%-0.5rem)] w-[2px] bg-[rgb(var(--accent-fill)/.55)] transition-colors duration-500 group-hover:bg-[rgb(var(--accent-fill))]"
+        />
+        <p className="font-display text-[14px] uppercase leading-[1.05] tracking-[-.02em]">
           {etiqueta}
         </p>
-        <p className="mt-1 text-[12px] leading-relaxed text-[rgb(var(--fg-muted))] text-pretty">
+        <p className="mt-1.5 text-[12.5px] leading-relaxed text-[rgb(var(--fg-muted))] text-pretty">
           {descripcion}
         </p>
       </figcaption>
@@ -138,7 +144,7 @@ export function GrillaTikTok({
     Dos columnas en móvil y cuatro desde `sm`. Por debajo de ~200 px de ancho el
     reproductor de TikTok deja de ser legible, así que no se baja de ahí.
   */
-  const grilla = `grid gap-x-3 gap-y-6 ${columnas} ${className}`;
+  const grilla = `grid gap-x-4 gap-y-10 ${columnas} ${className}`;
   const lista = typeof limite === 'number' ? videos.slice(0, limite) : videos;
 
   if (videos.length === 0) {

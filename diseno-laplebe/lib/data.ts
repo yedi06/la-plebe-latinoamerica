@@ -415,72 +415,72 @@ export const TIKTOKS: { url: string; etiqueta: string; descripcion: string }[] =
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7619125416548207892',
     etiqueta: 'Dormía sobre tablas',
     descripcion:
-      'Ella dormía sobre tablas. Hoy no. Esto es gracias a ustedes. Si conoces un caso, escríbenos.',
+      'Ella dormía sobre tablas. Hoy no. 🤍 ¡Esto es gracias a ustedes! 💪 Si conoces un caso, escríbenos.',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7617278794218425621',
     etiqueta: 'Una abuelita sola',
     descripcion:
-      'Fuimos a ayudar a una abuelita que vive en condiciones muy difíciles. Le llevamos víveres, camas y algunas cosas para su casa. Su agradecimiento fue tan grande que terminó llorando.',
+      'Fuimos a ayudar a una abuelita que vive en condiciones muy difíciles. Le llevamos víveres, camas y algunas cosas para su casa. Su agradecimiento fue tan grande que terminó llorando… 🥹❤️',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7592757314331872520',
     etiqueta: 'Acompañar el dolor',
-    descripcion: 'No podemos borrar el dolor, pero sí acompañar.',
+    descripcion: 'No podemos borrar el dolor, pero sí acompañar. 🤍',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7686645695977213192',
     etiqueta: 'Los que hicieron tanto',
     descripcion:
-      'Nunca nos olvidemos de quienes hicieron tanto por nosotros. Hoy estamos aquí para darles al menos un pequeño momento de alegría.',
+      '💔 Nunca nos olvidemos de quienes hicieron tanto por nosotros. Hoy estamos aquí para darles al menos un pequeño momento de alegría ✨🙏🏻',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7683662382517783829',
     etiqueta: 'Sobrevivir con muy poco',
     descripcion:
-      'Hay familias que sobreviven con muy poco. Estamos aquí para darles al menos un pequeño momento de alegría.',
+      'Hay familias que sobreviven con muy poco 💔 Estamos aquí para darles al menos un pequeño momento de alegría ✨🙏🏻',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7682507049439218964',
     etiqueta: 'Somos La Plebe',
     descripcion:
-      'Estamos aquí para ayudar, para dar un poco de esperanza a todo el que lo necesita. Somos La Plebe.',
+      'Estamos aquí para ayudar, para dar un poco de esperanza a todo el que lo necesita. Somos La Plebe ♥️🙏🏻',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7678869755775782164',
     etiqueta: 'Una madre que no pierde la fe',
     descripcion:
-      'Toda una familia a sus espaldas, pero esta madre no pierde la fe. Llegamos hasta aquí para darle un poco de ayuda y respiro en momentos difíciles.',
+      'Toda una familia a sus espaldas, pero esta madre no pierde la fe 🙏🏻 Llegamos hasta aquí para darle un poco de ayuda y respiro en momentos difíciles.',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7676717176534928661',
     etiqueta: 'Ella lucha sola',
     descripcion:
-      'Ella lucha sola por su hijito. Vinimos a ayudarla y darle un poquito de tranquilidad para sus días.',
+      'Ella lucha sola por su hijito 💔 Vinimos a ayudarla y darle un poquito de tranquilidad para sus días 🙌🏻',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7676630261135625479',
     etiqueta: 'Llegar cada vez más lejos',
     descripcion:
-      'Ayúdennos a llegar cada vez más lejos para poder seguir ayudando a todas las familias que lo necesitan.',
+      'Ayúdennos a llegar cada vez más lejos para poder seguir ayudando a todas las familias que lo necesitan 🙌🏻',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7675048478367681799',
     etiqueta: 'Bendecir más hogares',
     descripcion:
-      'Seguimos apoyando a todos los que lo necesitan. Ayúdennos a ayudar a más familias y seguir bendiciendo más hogares.',
+      'Seguimos apoyando a todos los que lo necesitan 🙏🏻✨ Ayúdennos a ayudar a más familias y seguir bendiciendo más hogares 🕊️',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7672080734743563541',
     etiqueta: 'Un camino duro',
     descripcion:
-      'Un duro camino, pero nunca es demasiado largo cuando queremos ayudar. Y ella lo necesitaba.',
+      'Un duro camino, pero nunca es demasiado largo cuando queremos ayudar. Y ella lo necesitaba 💔',
   },
   {
     url: 'https://www.tiktok.com/@la.plebe_latinoamerica/video/7669947620084731153',
     etiqueta: 'Los milagros existen',
     descripcion:
-      'Ella lucha constantemente por ella y por su hijo. Llegamos a ayudarla, a darle un respiro y a hacerla creer que los milagros existen.',
+      'Ella lucha constantemente por ella y por su hijo. Llegamos a ayudarla, a darle un respiro y a hacerla creer que los milagros existen… 🙏🏻✨',
   },
 ];
 
