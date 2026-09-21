@@ -24,7 +24,7 @@ type Medio = 'billeteras' | 'transferencia' | 'tarjeta' | 'paypal' | 'efectivo' 
 const MEDIOS: { id: Medio; nombre: string; logo: string }[] = [
   { id: 'billeteras', nombre: 'Billeteras', logo: 'billeteras' },
   { id: 'transferencia', nombre: 'Banco', logo: 'transferencia' },
-  { id: 'tarjeta', nombre: 'Tarjeta', logo: 'visa' },
+  { id: 'tarjeta', nombre: 'Tarjeta', logo: 'tarjeta' },
   { id: 'paypal', nombre: 'PayPal', logo: 'paypal' },
   { id: 'efectivo', nombre: 'Efectivo', logo: 'pagoefectivo' },
   { id: 'otras', nombre: 'Otras', logo: 'applepay' },
