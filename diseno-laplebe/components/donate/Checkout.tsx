@@ -50,8 +50,8 @@ function Casilla({
       aria-pressed={activo}
       className={`flex h-11 w-[86px] items-center justify-center rounded-xl border p-1.5 transition ${
         activo
-          ? 'border-[rgb(var(--accent-fill))] bg-[rgb(var(--accent-fill)/.1)]'
-          : `${HAIRLINE} opacity-55 hover:opacity-100`
+          ? 'border-[rgb(var(--accent-fill))]'
+          : `${HAIRLINE} opacity-45 hover:opacity-100`
       }`}
     >
       <LogoPago id={id} nombre={nombre} cubrir />
@@ -118,7 +118,7 @@ export function Checkout({
       <div
         role="radiogroup"
         aria-label="Medio de pago"
-        className="grid grid-cols-3 gap-1.5 sm:grid-cols-6"
+        className="grid max-w-[420px] grid-cols-3 gap-2"
       >
         {MEDIOS.map((m) => {
           const on = medio === m.id;
@@ -131,8 +131,8 @@ export function Checkout({
               onClick={() => setMedio(m.id)}
               className={`flex min-w-0 flex-col items-center gap-1.5 rounded-xl border px-1.5 pb-2 pt-2.5 transition ${
                 on
-                  ? 'border-[rgb(var(--accent-fill))] bg-[rgb(var(--accent-fill)/.1)]'
-                  : `${HAIRLINE} opacity-55 hover:opacity-100`
+                  ? 'border-[rgb(var(--accent-fill))]'
+                  : `${HAIRLINE} opacity-45 hover:opacity-100`
               }`}
             >
               <span className="flex h-9 w-full items-center justify-center">
