@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { LOGOS_DISPONIBLES } from '@/lib/data';
+import { rutaPublica } from '@/lib/ruta';
 
 /**
  * Logotipo de un medio de pago.
@@ -50,7 +51,7 @@ export function LogoPago({
     // `object-contain` al 100% el logo toca los bordes de su casilla.
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={`/logos/${id}.png`}
+      src={rutaPublica(`/logos/${id}.png`)}
       alt={nombre}
       onError={() => setFalla(true)}
       loading="lazy"

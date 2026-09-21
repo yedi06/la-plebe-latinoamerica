@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from 'react';
 import { BRAND } from '@/lib/data';
+import { rutaPublica } from '@/lib/ruta';
 
 /* ==========================================================================
    Avatar — foto real del perfil con el trazo lima del kit
@@ -38,7 +39,7 @@ export function AvatarMarca({
       )}
       <div className={`absolute overflow-hidden rounded-full ${ring ? 'inset-[7px]' : 'inset-0'}`}>
         <img
-          src="/perfil-laplebe.jpg"
+          src={rutaPublica("/perfil-laplebe.jpg")}
           alt="La Plebe Latinoamérica"
           width={1080}
           height={1080}

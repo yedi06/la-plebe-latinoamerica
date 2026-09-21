@@ -21,6 +21,7 @@ import {
   ThemeToggle,
 } from '@/components/brand/Marca';
 import { MediaPlaceholder } from '@/components/brand/MediaPlaceholder';
+import { rutaPublica } from '@/lib/ruta';
 import { LogosEnBoton } from '@/components/brand/LogoPago';
 import { useTemaVariante } from '@/components/brand/useTemaVariante';
 import { DonationSheet } from '@/components/donate/DonationSheet';
@@ -135,7 +136,7 @@ export default function V3() {
       <div className="relative -mx-5 -mt-16 sm:-mx-10 lg:mx-0 lg:mt-0">
         <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[16/10] lg:aspect-[4/5]">
           <img
-            src="/perfil-laplebe.jpg"
+            src={rutaPublica("/perfil-laplebe.jpg")}
             alt="Equipo de La Plebe Latinoamérica"
             width={1080}
             height={1080}
