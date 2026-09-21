@@ -249,11 +249,7 @@ export function LecturaImpacto({
     <div className={`rounded-xl bg-[rgb(var(--accent-fill)/.12)] px-4 py-3.5 ${className}`}>
       <p className="text-[11px] text-[rgb(var(--fg-muted))]">Tu donación se convierte en</p>
       <div>
-        <motion.p
-          key={`${monto}-${frente}-${frecuencia}`}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.26, ease: EASE }}
+        <p
           className="font-display text-[clamp(1.1rem,4.5vw,1.5rem)] uppercase leading-tight"
         >
           {impactoGeneral(monto)}
@@ -262,7 +258,7 @@ export function LecturaImpacto({
               cada mes
             </span>
           )}
-        </motion.p>
+        </p>
       </div>
     </div>
   );

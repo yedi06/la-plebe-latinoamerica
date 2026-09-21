@@ -175,25 +175,13 @@ export function DonationSheet({
               */}
               <div>
                 {paso === 1 ? (
-                  <motion.div
-                    key="p1"
-                    initial={{ opacity: 0, x: -14 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.28, ease: EASE }}
-                    className="space-y-5"
-                  >
+                  <div className="space-y-5">
                     <FrecuenciaToggle valor={frecuencia} onChange={cambiarFrecuencia} />
                     <SelectorMonto frecuencia={frecuencia} monto={monto} onChange={setMonto} />
                     <LecturaImpacto monto={monto} frente={frente} frecuencia={frecuencia} />
-                  </motion.div>
+                  </div>
                 ) : (
-                  <motion.div
-                    key="p2"
-                    initial={{ opacity: 0, x: 14 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.28, ease: EASE }}
-                    className="space-y-6"
-                  >
+                  <div className="space-y-6">
                     <div className={`flex items-baseline justify-between gap-3 border-b ${HAIRLINE} pb-3`}>
                       <p className="font-display text-[17px] uppercase leading-none">
                         S/ {monto}
@@ -210,7 +198,7 @@ export function DonationSheet({
                       </button>
                     </div>
                     <Checkout monto={monto} frecuencia={frecuencia} frente={nombreFrente} />
-                  </motion.div>
+                  </div>
                 )}
               </div>
             </div>

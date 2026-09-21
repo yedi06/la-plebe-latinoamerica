@@ -1,13 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { BANCOS, BILLETERAS, LOGOS_TARJETAS } from '@/lib/data';
 import { LogoPago } from '@/components/brand/LogoPago';
 import { QrMock } from '@/components/brand/QrMock';
 import { BotonPrincipal } from '@/components/ui/Boton';
 import { CampoCopiable } from './DonacionUI';
-import { EASE } from '@/components/motion';
 
 const HAIRLINE = 'border-[rgb(var(--line)/var(--line-a))]';
 
@@ -149,13 +147,7 @@ export function Checkout({
       {/* Sin animación de salida: el contenido del medio elegido se monta
           siempre, aunque se cambie de opción a media transición. */}
       <div>
-        <motion.div
-          key={medio}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.24, ease: EASE }}
-          className="mt-5"
-        >
+        <div key={medio} className="mt-5">
           {/* ---------------- Billeteras digitales ---------------- */}
           {medio === 'billeteras' && (
             <div>
@@ -310,7 +302,7 @@ export function Checkout({
               </p>
             </div>
           )}
-        </motion.div>
+        </div>
       </div>
 
       <p className={`mt-5 border-t ${HAIRLINE} pt-3 text-[11.5px] text-[rgb(var(--fg-muted))]`}>
