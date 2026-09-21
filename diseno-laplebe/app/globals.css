@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Tokens de tema — claro (papel crema del kit) y oscuro (negro de marca)
+   ========================================================================== */
+@layer base {
+  :root {
+    --bg: 242 239 233; /* crema */
+    --bg-elev: 255 255 255;
+    --fg: 10 10 10;
+    --fg-muted: 74 74 74;
+    --line: 10 10 10;
+    --line-a: 0.12;
+    --accent: 21 102 94; /* turquesa accesible sobre crema */
+    --accent-fill: 63 167 156;
+    --accent-2: 78 122 22; /* lima accesible sobre crema */
+    --accent-2-fill: 139 197 63;
+    --glass: 255 255 255;
+    --glass-a: 0.66;
+  }
+
+  .dark {
+    --bg: 7 8 9;
+    --bg-elev: 20 22 24;
+    --fg: 242 239 233;
+    --fg-muted: 168 168 162;
+    --line: 242 239 233;
+    --line-a: 0.14;
+    --accent: 111 224 210; /* turquesa brillante, AA sobre negro */
+    --accent-fill: 63 167 156;
+    --accent-2: 168 221 94;
+    --accent-2-fill: 139 197 63;
+    --glass: 255 255 255;
+    --glass-a: 0.06;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: rgb(var(--bg));
+    color: rgb(var(--fg));
+    font-family: var(--font-sans), system-ui, sans-serif;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgb(var(--accent-2-fill));
+    color: #0a0a0a;
+  }
+
+  /*
+    Montserrat necesita peso y tracking explícitos para leerse como en el kit.
+    Va con :where() para que tenga especificidad 0: cualquier utilidad de peso
+    o de tracking escrita en el marcado la sobrescribe sin pelear.
+  */
+  :where(.font-display) {
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  /* Foco visible y consistente — requisito de accesibilidad en toda la landing */
+  :focus-visible {
+    outline: 3px solid rgb(var(--accent-fill));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* ==========================================================================
+   Utilidades de marca
+   ========================================================================== */
+@layer components {
+  /* Textura de papel del kit media — ruido SVG muy sutil, 0 requests */
+  .paper-grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  }
+  .dark .paper-grain::before {
+    mix-blend-mode: screen;
+    opacity: 0.28;
+  }
+
+  /* Tarjeta glassmorphism adaptativa a ambos modos */
+  .glass {
+    background-color: rgb(var(--glass) / var(--glass-a));
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgb(var(--line) / var(--line-a));
+  }
+  .glass-strong {
+    background-color: rgb(var(--glass) / calc(var(--glass-a) + 0.1));
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid rgb(var(--line) / calc(var(--line-a) + 0.06));
+  }
+
+  /* Divisor punteado turquesa (lámina 2 del kit) */
+  .dashed-rule {
+    background-image: linear-gradient(
+      to right,
+      rgb(var(--accent-fill) / 0.85) 0 8px,
+      transparent 8px 16px
+    );
+    background-size: 16px 2px;
+    background-repeat: repeat-x;
+    height: 2px;
+  }
+
+  /* Brochazo lima bajo una palabra — replica el subrayado del claim */
+  .brush-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .brush-underline::after {
+    content: '';
+    position: absolute;
+    left: -2%;
+    right: -2%;
+    bottom: -0.12em;
+    height: 0.34em;
+    background: rgb(var(--accent-2-fill));
+    border-radius: 999px 999px 40% 60% / 999px 999px 60% 40%;
+    transform: rotate(-1.2deg);
+    opacity: 0.9;
+    z-index: -1;
+  }
+
+  /* Texto con degradado de marca */
+  .text-brand-gradient {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--accent-fill)),
+      rgb(var(--accent-2-fill)) 55%,
+      rgb(var(--accent-fill))
+    );
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-pan 14s ease infinite;
+  }
+
+  /* Cuadrícula técnica de fondo (capa "tecnológica") */
+  .tech-grid {
+    background-image: linear-gradient(rgb(var(--line) / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--line) / 0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 78%);
+  }
+
+  /* Scroll horizontal con snap, sin barra visible */
+  .snap-row {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .snap-row::-webkit-scrollbar {
+    display: none;
+  }
+  .snap-item {
+    scroll-snap-align: center;
+  }
+
+  /* Placeholder de medio: degradado de marca + patrón, nunca una caja vacía */
+  .media-fill {
+    background-color: rgb(var(--bg-elev));
+    background-image: radial-gradient(
+        120% 90% at 12% 8%,
+        rgb(var(--accent-fill) / 0.42) 0%,
+        transparent 58%
+      ),
+      radial-gradient(100% 80% at 92% 96%, rgb(var(--accent-2-fill) / 0.34) 0%, transparent 60%),
+      linear-gradient(145deg, rgb(16 35 60 / 0.9), rgb(10 10 10 / 0.94));
+  }
+  .media-fill-light {
+    background-color: rgb(var(--bg-elev));
+    background-image: radial-gradient(
+        120% 90% at 10% 4%,
+        rgb(var(--accent-fill) / 0.55) 0%,
+        transparent 60%
+      ),
+      radial-gradient(110% 90% at 96% 100%, rgb(var(--accent-2-fill) / 0.5) 0%, transparent 62%),
+      linear-gradient(150deg, #ffffff, rgb(var(--bg)));
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Evita el "flash" de layout en transformaciones 3D */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* ==========================================================================
+   Respeto por prefers-reduced-motion (accesibilidad + performance)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

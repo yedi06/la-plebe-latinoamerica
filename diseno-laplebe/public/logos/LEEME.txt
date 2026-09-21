@@ -1,0 +1,1 @@
+﻿Coloca aqui los SVG oficiales: yape.svg, plin.svg, visa.svg, mastercard.svg, amex.svg, diners.svg, paypal.svg, unionpay.svg y el de la pasarela elegida. Ver LOGOS-Y-MEDIOS.md en la carpeta padre.

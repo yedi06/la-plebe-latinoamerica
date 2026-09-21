@@ -1,0 +1,21 @@
+# Dependencias y compilados
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log
+.env*
+
+# Material de origen pesado: no forma parte del entregable.
+# El kit pesa 88 MB y GitHub avisa a partir de 50 MB; además es material
+# interno del cliente, no código.
+kit media plebe.pdf
+
+# Logotipos sin procesar. Los que usa la web están ya optimizados
+# en diseno-laplebe/public/logos/
+medios-de-pago/
