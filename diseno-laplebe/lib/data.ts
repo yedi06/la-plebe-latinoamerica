@@ -164,7 +164,7 @@ export function impactoDeMonto(monto: number, frenteId: Frente['id']): string {
 /* -------------------------------------------------------------------------- */
 
 export type Billetera = {
-  id: 'yape' | 'plin' | 'qr';
+  id: 'yape' | 'plin' | 'bim';
   nombre: string;
   numero: string;
   titular: string;
@@ -188,6 +188,14 @@ export const BILLETERAS: Billetera[] = [
     titular: 'La Plebe Latinoamérica',
     color: '#00A9E0',
     nota: 'Escanea el QR o plinea al número',
+  },
+  {
+    id: 'bim',
+    nombre: 'BIM',
+    numero: '9XX XXX XXX', // PENDIENTE
+    titular: 'La Plebe Latinoamérica',
+    color: '#E4032E',
+    nota: 'Escanea el QR o envía al número',
   },
 ];
 
