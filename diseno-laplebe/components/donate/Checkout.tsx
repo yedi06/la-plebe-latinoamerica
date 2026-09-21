@@ -11,7 +11,7 @@ import { EASE } from '@/components/motion';
 
 const HAIRLINE = 'border-[rgb(var(--line)/var(--line-a))]';
 
-type Medio = 'yape' | 'plin' | 'transferencia' | 'tarjeta' | 'paypal';
+type Medio = 'yape' | 'plin' | 'transferencia' | 'tarjeta' | 'paypal' | 'efectivo';
 
 const MEDIOS: { id: Medio; nombre: string; logo: string }[] = [
   { id: 'yape', nombre: 'Yape', logo: 'yape' },
@@ -19,6 +19,7 @@ const MEDIOS: { id: Medio; nombre: string; logo: string }[] = [
   { id: 'transferencia', nombre: 'Banco', logo: 'transferencia' },
   { id: 'tarjeta', nombre: 'Tarjeta', logo: 'visa' },
   { id: 'paypal', nombre: 'PayPal', logo: 'applepay' },
+  { id: 'efectivo', nombre: 'Efectivo', logo: 'pagoefectivo' },
 ];
 
 /* ========================================================================== */
@@ -84,7 +85,7 @@ export function Checkout({
     <div className={className}>
       {/* ---------------- Elección de medio ---------------- */}
       <p className="mb-2.5 text-[11px] text-[rgb(var(--fg-muted))]">¿Cómo quieres donar?</p>
-      <div role="radiogroup" aria-label="Medio de pago" className="grid grid-cols-5 gap-1.5">
+      <div role="radiogroup" aria-label="Medio de pago" className="grid grid-cols-3 gap-1.5 sm:grid-cols-6">
         {MEDIOS.map((m) => {
           const on = medio === m.id;
           return (
@@ -207,6 +208,23 @@ export function Checkout({
               <p className="mt-3 text-[11px] leading-snug text-[rgb(var(--fg-muted))]">
                 Los datos de tu tarjeta los procesa la pasarela con 3D Secure. No pasan por los
                 servidores de La Plebe.
+              </p>
+            </div>
+          )}
+
+          {/* ---- Efectivo ---- */}
+          {medio === 'efectivo' && (
+            <div>
+              <p className="text-[13px] leading-relaxed text-[rgb(var(--fg-muted))]">
+                Para donar sin tarjeta ni cuenta bancaria. Generamos un código y lo pagas en
+                efectivo en agentes, bodegas afiliadas, farmacias o bancos.
+              </p>
+              <BotonPrincipal tamano="md" className="mt-5">
+                Generar código · S/ {monto}
+                {sufijoMensual}
+              </BotonPrincipal>
+              <p className="mt-3 text-[11px] leading-snug text-[rgb(var(--fg-muted))]">
+                El código vence a las 24 horas. Guarda el comprobante del agente.
               </p>
             </div>
           )}
