@@ -198,6 +198,51 @@ export default function V3() {
           ))}
         </div>
       </div>
+
+      {/*
+        Historias en video, debajo de todo lo demás del inicio. Solo cuatro:
+        el resto vive en «Nosotros». Un muro de doce videos en la portada
+        compite con el botón de donar, que es lo que esta pantalla debe lograr.
+      */}
+      <div className="lg:col-span-2">
+        <div className={`mt-4 border-t ${HAIRLINE} pt-6`}>
+          <h2 className="font-display text-[clamp(1.35rem,5.2vw,2.3rem)] uppercase leading-[0.95] tracking-[-.03em]">
+            Historias que grabamos
+          </h2>
+          <p className="mt-2 max-w-[54ch] text-[13.5px] leading-relaxed text-[rgb(var(--fg-muted))]">
+            Cada entrega queda registrada. Estas son algunas.
+          </p>
+
+          <GrillaTikTok videos={TIKTOKS} limite={4} className="mt-5" />
+
+          <button
+            type="button"
+            onClick={() => cambiar(1)}
+            className={`group mt-6 flex w-full items-center justify-between gap-4 border ${HAIRLINE} px-5 py-4 text-left transition hover:border-[rgb(var(--accent-fill))]`}
+          >
+            <span>
+              <span className="block font-display text-[17px] uppercase leading-none tracking-tight">
+                Conócenos más
+              </span>
+              <span className="mt-1.5 block text-[12px] text-[rgb(var(--fg-muted))]">
+                Nuestra historia y las {TIKTOKS.length} historias completas
+              </span>
+            </span>
+            <svg
+              viewBox="0 0 24 24"
+              className="h-5 w-5 shrink-0 text-[rgb(var(--accent))] transition-transform duration-300 group-hover:translate-x-1.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M5 12h13M13 6l6 6-6 6" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   );
 
@@ -289,7 +334,7 @@ export default function V3() {
       <div className="mt-10">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <h3 className="font-display text-[clamp(1.05rem,3.8vw,1.45rem)] uppercase leading-tight tracking-[-.02em]">
-            La evidencia
+            Todas las historias
           </h3>
           <a
             href={BRAND.tiktok}
@@ -299,7 +344,12 @@ export default function V3() {
             Ver el canal
           </a>
         </div>
-        <GrillaTikTok videos={TIKTOKS} className="mt-4" />
+        <GrillaTikTok
+          videos={TIKTOKS}
+          conDescripcion
+          columnas="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-5"
+        />
       </div>
 
       <div className="mt-8 max-w-[420px]">

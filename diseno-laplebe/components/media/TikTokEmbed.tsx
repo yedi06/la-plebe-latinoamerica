@@ -35,10 +35,13 @@ function idDesdeUrl(url: string) {
 export function TikTokEmbed({
   url,
   etiqueta,
+  descripcion,
   className = '',
 }: {
   url: string;
   etiqueta: string;
+  /** Texto del propio TikTok. Va debajo del video, no encima. */
+  descripcion?: string;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -68,9 +71,10 @@ export function TikTokEmbed({
   }
 
   return (
+    <figure className={className}>
     <div
       ref={ref}
-      className={`relative overflow-hidden bg-ink ring-1 ring-[rgb(var(--line)/var(--line-a))] ${className}`}
+      className="relative overflow-hidden bg-ink ring-1 ring-[rgb(var(--line)/var(--line-a))]"
       style={{ aspectRatio: '9 / 16' }}
     >
       {/* Se mantiene debajo hasta que el reproductor confirma que cargó, para que
@@ -94,6 +98,17 @@ export function TikTokEmbed({
         />
       )}
     </div>
+    {descripcion && (
+      <figcaption className="mt-2.5">
+        <p className="font-display text-[12.5px] uppercase leading-tight tracking-tight">
+          {etiqueta}
+        </p>
+        <p className="mt-1 text-[12px] leading-relaxed text-[rgb(var(--fg-muted))] text-pretty">
+          {descripcion}
+        </p>
+      </figcaption>
+    )}
+    </figure>
   );
 }
 
@@ -101,9 +116,16 @@ export function TikTokEmbed({
 export function GrillaTikTok({
   videos,
   className = '',
+  limite,
+  conDescripcion = false,
+  columnas = 'grid-cols-2 sm:grid-cols-4',
 }: {
-  videos: { url: string; etiqueta: string }[];
+  videos: { url: string; etiqueta: string; descripcion?: string }[];
   className?: string;
+  /** Cuántos mostrar. Sin límite, se muestran todos. */
+  limite?: number;
+  conDescripcion?: boolean;
+  columnas?: string;
 }) {
   const vacios = [
     'Espacio para short — entrega de víveres',
@@ -116,7 +138,8 @@ export function GrillaTikTok({
     Dos columnas en móvil y cuatro desde `sm`. Por debajo de ~200 px de ancho el
     reproductor de TikTok deja de ser legible, así que no se baja de ahí.
   */
-  const grilla = `grid grid-cols-2 gap-3 sm:grid-cols-4 ${className}`;
+  const grilla = `grid gap-x-3 gap-y-6 ${columnas} ${className}`;
+  const lista = typeof limite === 'number' ? videos.slice(0, limite) : videos;
 
   if (videos.length === 0) {
     return (
@@ -130,8 +153,13 @@ export function GrillaTikTok({
 
   return (
     <div className={grilla}>
-      {videos.map((v) => (
-        <TikTokEmbed key={v.url} url={v.url} etiqueta={v.etiqueta} />
+      {lista.map((v) => (
+        <TikTokEmbed
+          key={v.url}
+          url={v.url}
+          etiqueta={v.etiqueta}
+          descripcion={conDescripcion ? v.descripcion : undefined}
+        />
       ))}
     </div>
   );
