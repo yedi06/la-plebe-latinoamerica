@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { BRAND } from '@/lib/data';
 import { rutaPublica } from '@/lib/ruta';
 
@@ -210,11 +211,7 @@ export function IconTikTok({ className = 'h-5 w-5' }: { className?: string }) {
   );
 }
 export function IconWhatsApp({ className = 'h-5 w-5' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-2.7-1-4.5-3.7-4.6-3.9-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.2.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.6-.1 1.3z" />
-    </svg>
-  );
+  return <FaWhatsapp className={className} aria-hidden />;
 }
 export function IconMail({ className = 'h-5 w-5' }: { className?: string }) {
   return (
