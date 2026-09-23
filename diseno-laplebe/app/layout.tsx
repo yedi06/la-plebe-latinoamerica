@@ -56,8 +56,12 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-/** Aplica el tema antes del primer paint para evitar el flash de color. */
-const noFlash = `(function(){try{var s=localStorage.getItem('lp-theme');var d=s?s==='dark':matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.classList.toggle('dark',d)}catch(e){}})()`;
+/**
+ * Aplica el tema antes del primer paint para evitar el flash de color.
+ * Por defecto siempre arranca en claro; el modo oscuro solo se activa si la
+ * persona lo eligió antes con el toggle (no sigue la preferencia del sistema).
+ */
+const noFlash = `(function(){try{var s=localStorage.getItem('lp-theme');document.documentElement.classList.toggle('dark',s==='dark')}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

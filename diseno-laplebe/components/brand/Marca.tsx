@@ -57,12 +57,15 @@ export function AvatarMarca({
    ========================================================================== */
 export function Claim({
   className = '',
+  texto = BRAND.claim,
   highlight = 'nosotros sí.',
 }: {
   className?: string;
+  /** Frase completa a mostrar. Por defecto, el claim principal de marca. */
+  texto?: string;
   highlight?: string;
 }) {
-  const [antes, despues] = BRAND.claim.split(highlight);
+  const [antes, despues] = texto.split(highlight);
   return (
     <p className={`font-marker leading-[1.05] ${className}`}>
       {antes}

@@ -1,7 +1,7 @@
 'use client';
 
 import { BRAND, STATS } from '@/lib/data';
-import { IconMail, IconTikTok, IconWhatsApp } from '@/components/brand/Marca';
+import { Claim, IconMail, IconTikTok, IconWhatsApp } from '@/components/brand/Marca';
 import { CountUp } from '@/components/motion';
 
 const HAIRLINE = 'border-[rgb(var(--line)/var(--line-a))]';
@@ -41,7 +41,12 @@ export function BloqueEmpresas({ className = '' }: { className?: string }) {
     <section id="empresas" className={`scroll-mt-16 border-t ${HAIRLINE} pt-6 ${className}`}>
       <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
-          <h2 className="font-display text-[clamp(1.2rem,4.4vw,1.8rem)] uppercase leading-[0.98] tracking-[-.03em] text-balance">
+          <Claim
+            texto="Ayudar también es buen negocio."
+            highlight="buen negocio."
+            className="text-[clamp(1.1rem,4.2vw,1.6rem)] text-[rgb(var(--fg))]"
+          />
+          <h2 className="mt-2 font-display text-[clamp(1.2rem,4.4vw,1.8rem)] uppercase leading-[0.98] tracking-[-.03em] text-balance">
             ¿Tu empresa quiere sumarse?
           </h2>
           <p className="mt-2.5 max-w-[52ch] text-[13.5px] leading-relaxed text-[rgb(var(--fg-muted))]">

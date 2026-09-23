@@ -86,7 +86,7 @@ function IconoNav({ tipo, className = 'h-[19px] w-[19px]' }: { tipo: Icono; clas
  * barre la pantalla, cambia el contenido debajo y se retira por el otro lado.
  */
 export default function V3() {
-  useTemaVariante('dark');
+  useTemaVariante('light');
   const reduce = useReducedMotion();
   const [seccion, setSeccion] = useState(0);
   const [cortina, setCortina] = useState(false);
@@ -251,7 +251,12 @@ export default function V3() {
     <div>
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,.85fr)] lg:gap-12">
         <div>
-          <h2 className="font-display text-[clamp(1.35rem,5.2vw,2.3rem)] uppercase leading-[0.95] tracking-[-.03em]">
+          <Claim
+            texto="Todo lo que ves, pasó de verdad."
+            highlight="pasó de verdad."
+            className="text-[clamp(1.1rem,4.2vw,1.6rem)] text-[rgb(var(--fg))]"
+          />
+          <h2 className="mt-2 font-display text-[clamp(1.35rem,5.2vw,2.3rem)] uppercase leading-[0.95] tracking-[-.03em]">
             Quiénes somos
           </h2>
           <p className="mt-4 max-w-[54ch] text-[14.5px] leading-relaxed text-[rgb(var(--fg-muted))] text-pretty">
@@ -363,7 +368,12 @@ export default function V3() {
   /* ------------------------------------------------------------ 2 DONAR */
   const donar = (
     <div>
-      <h2 className="font-display text-[clamp(1.35rem,5.2vw,2.3rem)] uppercase leading-[0.95] tracking-[-.03em]">
+      <Claim
+        texto="Ayudar toma menos de lo que crees."
+        highlight="menos de lo que crees."
+        className="text-[clamp(1.1rem,4.2vw,1.6rem)] text-[rgb(var(--fg))]"
+      />
+      <h2 className="mt-2 font-display text-[clamp(1.35rem,5.2vw,2.3rem)] uppercase leading-[0.95] tracking-[-.03em]">
         Todas las cuentas, a la vista
       </h2>
       <div className="mt-5 max-w-[460px]">
