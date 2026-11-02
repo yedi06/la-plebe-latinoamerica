@@ -36,12 +36,15 @@ export function TikTokEmbed({
   url,
   etiqueta,
   descripcion,
+  soloEscritorio = false,
   className = '',
 }: {
   url: string;
   etiqueta: string;
   /** Texto del propio TikTok. Va debajo del video, no encima. */
   descripcion?: string;
+  /** En el carrusel móvil basta el título: el video ya cuenta la historia. */
+  soloEscritorio?: boolean;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -109,7 +112,7 @@ export function TikTokEmbed({
         <p className="font-display text-[14px] uppercase leading-[1.05] tracking-[-.02em]">
           {etiqueta}
         </p>
-        <p className="mt-1.5 text-[12.5px] leading-relaxed text-[rgb(var(--fg-muted))] text-pretty">
+        <p className={`mt-1.5 text-[12.5px] leading-relaxed text-[rgb(var(--fg-muted))] text-pretty ${soloEscritorio ? 'hidden lg:block' : ''}`}>
           {descripcion}
         </p>
       </figcaption>
@@ -124,6 +127,7 @@ export function GrillaTikTok({
   className = '',
   limite,
   conDescripcion = false,
+  carrusel = false,
   columnas = 'grid-cols-2 sm:grid-cols-4',
 }: {
   videos: { url: string; etiqueta: string; descripcion?: string }[];
@@ -131,6 +135,8 @@ export function GrillaTikTok({
   /** Cuántos mostrar. Sin límite, se muestran todos. */
   limite?: number;
   conDescripcion?: boolean;
+  /** En móvil se desliza de lado, de a un video; desde escritorio es grilla. */
+  carrusel?: boolean;
   columnas?: string;
 }) {
   const vacios = [
@@ -144,7 +150,9 @@ export function GrillaTikTok({
     Dos columnas en móvil y cuatro desde `sm`. Por debajo de ~200 px de ancho el
     reproductor de TikTok deja de ser legible, así que no se baja de ahí.
   */
-  const grilla = `grid gap-x-4 gap-y-10 ${columnas} ${className}`;
+  const grilla = carrusel
+    ? `carrusel lg:grid-cols-4 lg:gap-x-4 lg:gap-y-10 ${className}`
+    : `grid gap-x-4 gap-y-10 ${columnas} ${className}`;
   const lista = typeof limite === 'number' ? videos.slice(0, limite) : videos;
 
   if (videos.length === 0) {
@@ -165,6 +173,8 @@ export function GrillaTikTok({
           url={v.url}
           etiqueta={v.etiqueta}
           descripcion={conDescripcion ? v.descripcion : undefined}
+          soloEscritorio={carrusel}
+          className={carrusel ? 'w-[64vw] max-w-[280px] lg:w-auto lg:max-w-none' : ''}
         />
       ))}
     </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
-import { FaWhatsapp } from 'react-icons/fa6';
+import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa6';
 import { BRAND } from '@/lib/data';
 import { rutaPublica } from '@/lib/ruta';
 
@@ -213,6 +213,35 @@ export function IconTikTok({ className = 'h-5 w-5' }: { className?: string }) {
 export function IconWhatsApp({ className = 'h-5 w-5' }: { className?: string }) {
   return <FaWhatsapp className={className} aria-hidden />;
 }
+/**
+ * Las redes de La Plebe. TikTok va primero: es donde están las entregas.
+ * Cada ícono es una zona táctil de 44 px aunque el dibujo sea más pequeño.
+ */
+export function RedesSociales({ className = '' }: { className?: string }) {
+  const redes = [
+    { nombre: 'TikTok', href: BRAND.tiktok, Icono: IconTikTok },
+    { nombre: 'Instagram', href: BRAND.instagram, Icono: FaInstagram },
+    { nombre: 'Facebook', href: BRAND.facebook, Icono: FaFacebookF },
+  ];
+  return (
+    <div className={`flex items-center ${className}`}>
+      {redes.map(({ nombre, href, Icono }) => (
+        <a
+          key={nombre}
+          href={href}
+          target="_blank"
+          rel="noopener"
+          aria-label={`La Plebe en ${nombre}`}
+          title={nombre}
+          className="flex h-11 w-11 items-center justify-center text-current transition hover:text-[rgb(var(--accent))]"
+        >
+          <Icono className="h-[18px] w-[18px]" aria-hidden />
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export function IconMail({ className = 'h-5 w-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
@@ -244,7 +273,14 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
 
   useEffect(() => {
     const raiz = document.documentElement;
-    const leer = () => setDark(raiz.classList.contains('dark'));
+    const leer = () => {
+      const oscuro = raiz.classList.contains('dark');
+      setDark(oscuro);
+      // La barra del navegador en el celular acompaña al tema elegido.
+      document
+        .querySelectorAll('meta[name="theme-color"]')
+        .forEach((m) => m.setAttribute('content', oscuro ? '#11110F' : '#F2EFE9'));
+    };
     leer();
     const obs = new MutationObserver(leer);
     obs.observe(raiz, { attributes: true, attributeFilter: ['class'] });
@@ -267,16 +303,17 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
       type="button"
       onClick={toggle}
       aria-label={dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
-      className={`inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgb(var(--line)/var(--line-a))] bg-[rgb(var(--bg)/.7)] text-[rgb(var(--fg))] backdrop-blur-xl transition hover:border-[rgb(var(--fg)/.35)] ${className}`}
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full transition active:opacity-60 lg:h-9 lg:w-9 lg:border lg:border-[rgb(var(--line)/var(--line-a))] lg:bg-[rgb(var(--bg)/.7)] lg:text-[rgb(var(--fg))] lg:backdrop-blur-xl lg:hover:border-[rgb(var(--fg)/.35)] ${className}`}
     >
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden>
+      {/* Relleno, con el mismo peso visual que los íconos de redes que tiene al lado. */}
+      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] lg:h-4 lg:w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
         {dark ? (
           <>
-            <circle cx="12" cy="12" r="4" />
+            <circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none" />
             <path d="M12 2.8v2M12 19.2v2M4.4 4.4l1.4 1.4M18.2 18.2l1.4 1.4M2.8 12h2M19.2 12h2M4.4 19.6l1.4-1.4M18.2 5.8l1.4-1.4" />
           </>
         ) : (
-          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.2 8.2 0 1 0 20 14.2z" />
+          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.2 8.2 0 1 0 20 14.2z" fill="currentColor" stroke="none" />
         )}
       </svg>
     </button>

@@ -21,13 +21,15 @@
     --glass-a: 0.66;
   }
 
+  /* El negro de las poleras de la brigada: cálido, no azulado. */
   .dark {
-    --bg: 7 8 9;
-    --bg-elev: 20 22 24;
+    color-scheme: dark;
+    --bg: 17 17 15;
+    --bg-elev: 27 27 24;
     --fg: 242 239 233;
     --fg-muted: 168 168 162;
     --line: 242 239 233;
-    --line-a: 0.14;
+    --line-a: 0.16;
     --accent: 111 224 210; /* turquesa brillante, AA sobre negro */
     --accent-fill: 63 167 156;
     --accent-2: 168 221 94;
@@ -63,6 +65,12 @@
   :where(.font-display) {
     font-weight: 800;
     letter-spacing: -0.025em;
+  }
+
+  /* El contenido recibe el foco al cambiar de sección; el cursor solo va en los campos. */
+  input,
+  textarea {
+    caret-color: rgb(var(--fg));
   }
 
   /* Foco visible y consistente — requisito de accesibilidad en toda la landing */
@@ -137,21 +145,6 @@
     z-index: -1;
   }
 
-  /* Texto con degradado de marca */
-  .text-brand-gradient {
-    background-image: linear-gradient(
-      100deg,
-      rgb(var(--accent-fill)),
-      rgb(var(--accent-2-fill)) 55%,
-      rgb(var(--accent-fill))
-    );
-    background-size: 220% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradient-pan 14s ease infinite;
-  }
-
   /* Cuadrícula técnica de fondo (capa "tecnológica") */
   .tech-grid {
     background-image: linear-gradient(rgb(var(--line) / 0.07) 1px, transparent 1px),
@@ -199,9 +192,73 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  /* Tarjetas que se deslizan de lado en móvil y se vuelven grilla en escritorio.
+     La siguiente siempre asoma por el borde: así se entiende que hay más. */
+  .carrusel {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.25rem;
+    margin-inline: -1.25rem;
+    padding-inline: 1.25rem;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+  }
+  .carrusel::-webkit-scrollbar {
+    display: none;
+  }
+  .carrusel > * {
+    flex: none;
+    scroll-snap-align: start;
+  }
+  @media (min-width: 640px) {
+    .carrusel {
+      scroll-padding-inline: 2.5rem;
+      margin-inline: -2.5rem;
+      padding-inline: 2.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .carrusel {
+      display: grid;
+      overflow: visible;
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+  }
 }
 
 @layer utilities {
+  /*
+    Grabados con el papel llevado a blanco. En claro se funden con el fondo. En
+    oscuro multiplicar los haría desaparecer, así que se muestran como lo que son:
+    una lámina impresa sobre papel, con el mismo tono crema de la web.
+  */
+  .grabado {
+    mix-blend-mode: multiply;
+  }
+  .dark .grabado {
+    mix-blend-mode: screen;
+    filter: invert(1) hue-rotate(180deg) sepia(0.08) brightness(0.96);
+  }
+
+  /* El papel del kit, oscurecido: da textura sin volver a parecer un fondo claro. */
+  .dark .papel {
+    background-color: rgb(var(--bg));
+    background-blend-mode: multiply;
+  }
+  .dark [role='dialog'].papel {
+    background-color: rgb(var(--bg-elev));
+    box-shadow: 0 0 0 1px rgb(var(--line) / var(--line-a)), 0 24px 60px -20px rgb(0 0 0 / 0.8);
+  }
+  /* Las fotos se atenúan apenas para no deslumbrar sobre el negro. */
+  .dark .foto-tema {
+    filter: brightness(0.92);
+  }
+
   .text-balance {
     text-wrap: balance;
   }

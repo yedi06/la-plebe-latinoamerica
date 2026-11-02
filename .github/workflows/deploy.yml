@@ -32,10 +32,8 @@ jobs:
 
       - run: npm ci
 
-      # El sitio cuelga de /la-plebe-latinoamerica, no de la raíz del dominio.
+      # El sitio vive en la raíz de laplebelatam.org: sin subruta.
       - run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /la-plebe-latinoamerica
 
       # Sin esto GitHub Pages ignora las carpetas que empiezan por guion bajo.
       - run: touch out/.nojekyll

@@ -1,17 +1,9 @@
-# La Plebe Latinoamérica — Landing de donaciones
+# La Plebe Latinoamérica — Web de donaciones
 
-Propuesta de diseño UX/UI para la landing de donaciones de
-[@la.plebe_latinoamerica](https://www.tiktok.com/@la.plebe_latinoamerica).
+Web de donaciones de [@la.plebe_latinoamerica](https://www.tiktok.com/@la.plebe_latinoamerica).
+Dominio previsto: **laplebelatam.org**.
 
-Tres alternativas construidas sobre el mismo sistema visual. Lo que cambia entre ellas no es el
-estilo, es **la forma de moverse por la página**.
-
-| Ruta | Propuesta | Navegación |
-| --- | --- | --- |
-| `/` | Índice | — |
-| `/v1` | Paginada | La rueda del mouse, el swipe o las flechas saltan de pantalla |
-| `/v2` | Scroll natural | Recorrido hacia abajo, sin trucos |
-| **`/v3`** | **Cortina — elegida** | Índice numerado con iconos + barrido de marca entre secciones |
+La navegación es la «Cortina»: índice de secciones con un barrido de marca al cambiar.
 
 ## Arrancar
 
@@ -19,52 +11,60 @@ estilo, es **la forma de moverse por la página**.
 cd diseno-laplebe
 npm install
 npm run dev     # http://localhost:3000
-npm run build   # exporta HTML estático a /out
+npm run build   # exporta HTML estático a /out y verifica que no haya datos de ejemplo
 ```
 
-Next.js 14 (App Router, `output: 'export'` → SSG puro) · React 18 · TypeScript · Tailwind CSS ·
-Framer Motion. Sin backend: es HTML estático servible desde cualquier CDN.
+Next.js 14 (`output: 'export'`) · React 18 · TypeScript · Tailwind CSS. Sin backend: HTML estático.
 
 ## Documentos
 
 | Archivo | Qué contiene |
 | --- | --- |
-| [`ANALISIS-UX-UI.md`](ANALISIS-UX-UI.md) | Comparación de las tres propuestas, recomendación y plan de medición |
-| [`PASARELAS-PERU.md`](PASARELAS-PERU.md) | Culqi, Izipay, Niubiz y Mercado Pago: comisiones, requisitos y qué datos hacen falta |
-| [`LOGOS-Y-MEDIOS.md`](LOGOS-Y-MEDIOS.md) | De dónde sale cada logotipo y las medidas de todas las fotos y videos pendientes |
-| [`diseno-laplebe/README.md`](diseno-laplebe/README.md) | Sistema de marca, tipografía y estructura del código |
+| [`docs/design-system.md`](docs/design-system.md) | Color, tipografía, componentes, movimiento y fotografía |
+| [`LOGOS-Y-MEDIOS.md`](LOGOS-Y-MEDIOS.md) | Especificación de logotipos, QR, fotos y video |
+| [`sistema-mensual/LEEME.md`](sistema-mensual/LEEME.md) | Instalar el recordatorio mensual por correo |
+| [`ANALISIS-UX-UI.md`](ANALISIS-UX-UI.md) | Análisis inicial de las tres propuestas; histórico |
 
----
+## Estado de la información
 
-## ⚠️ Antes de publicar
+### Confirmado por el kit del cliente
 
-El diseño está terminado. **El contenido no.** Todo lo pendiente está marcado `PENDIENTE` en
-[`diseno-laplebe/lib/data.ts`](diseno-laplebe/lib/data.ts).
+Misión, los tres frentes, +20K seguidores, las tres modalidades para empresas, el reporte con acta
+para marcas y el correo de contacto publicado en el kit.
 
-**Datos de cobro** — sin esto la web no puede recibir una sola donación:
+### Entregado por el responsable del proyecto, por verificar
 
-- Números reales de Yape y Plin
-- Cuentas y CCI de BCP, BBVA, Interbank, Scotiabank y BanBif
-- Los tres códigos QR (Yape, Plin e interoperable), 1024 × 1024 px
-- WhatsApp de contacto
+- **RUC 20616665619:** dígito verificador correcto; falta confirmar titular y estado en SUNAT.
+- **Yape y WhatsApp 939 647 279:** falta confirmar el número y el nombre que aparece al yapear.
 
-**Contenido que hoy es texto inventado como marcador y no debe salir así:**
+### Pendiente del cliente
 
-- La **historia de La Plebe** en la sección «Nosotros» (los hitos 2023 / 2024 / 2025)
-- Las **equivalencias de impacto**: «S/ 25 = 10 raciones calientes», «S/ 60 = un mes de
-  medicinas», «S/ 40 = un kit escolar»
+Todo está marcado `PENDIENTE` en [`diseno-laplebe/lib/data.ts`](diseno-laplebe/lib/data.ts). Lo que
+falta **no se muestra**; al cargar el dato, aparece solo.
 
-Esas cifras son el motor de conversión de la página. Una web cuyo argumento central es *«todo lo
-que hacemos está documentado»* no puede publicarse con números que nadie verificó.
+- Nombre exacto del titular en Yape
+- Números de Plin y BIM, y QR reales
+- Cuentas y CCI de los bancos
+- Historia real de La Plebe, con fechas
+- Equivalencias de impacto (`S/ X = …`), si se quieren mostrar
+- Pasarela para tarjetas y enlace de PayPal
+- URL del Apps Script del recordatorio mensual
 
-**Fotos y video**: cada hueco de imagen muestra su proporción y medida exactas. El detalle está en
-`LOGOS-Y-MEDIOS.md`. El de mayor riesgo es el video del hero de la propuesta 02.
+## Publicación
+
+Cada push a `main` publica la web en **laplebelatam.org** mediante GitHub Pages
+(`.github/workflows/deploy.yml`). El dominio está en GoDaddy, con estos registros DNS:
+
+| Tipo | Nombre | Valor |
+| --- | --- | --- |
+| A | @ | 185.199.108.153 · 185.199.109.153 · 185.199.110.153 · 185.199.111.153 |
+| CNAME | www | yedi06.github.io |
+
+Pendiente de confirmar con el cliente: número y titular de Yape, RUC, cuenta de Instagram y el permiso
+de las personas que aparecen en las fotos.
 
 ## Sobre los logotipos
 
-`diseno-laplebe/public/logos/` contiene los logotipos de los medios de pago, procesados a partir
-de los archivos que entregó el cliente. Son **marcas registradas de sus respectivos titulares** y
-se muestran únicamente para indicar los medios de pago aceptados. No se han recoloreado ni
-modificado más allá del recorte y el reescalado.
-
-Los códigos QR que se ven en pantalla son **maquetas generadas, no son escaneables**.
+`diseno-laplebe/public/logos/` contiene logotipos de medios de pago, procesados a partir de los archivos
+que entregó el cliente. Son **marcas registradas de sus titulares**, y se muestran solo para indicar los
+medios aceptados.

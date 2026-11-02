@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Caveat, Montserrat, Plus_Jakarta_Sans } from 'next/font/google';
+import { BRAND } from '@/lib/data';
 import './globals.css';
 
 /**
@@ -31,25 +32,39 @@ const marker = Caveat({
   display: 'swap',
 });
 
+/** El dominio definitivo; se puede cambiar por entorno para probar en otro sitio. */
+const sitio = process.env.NEXT_PUBLIC_SITE_URL ?? BRAND.dominio;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(sitio),
+  alternates: { canonical: '/' },
   title: {
     default: 'La Plebe Latinoamérica — Dona y llega donde otros no llegan',
     template: '%s · La Plebe Latinoamérica',
   },
   description:
-    'Ayuda directa y documentada en comedores populares, asentamientos y zonas extremas del Perú. Dona por Yape, Plin, transferencia, tarjeta o PayPal en menos de 30 segundos.',
+    'Ayuda directa y documentada en comedores populares, asentamientos y zonas extremas del Perú. Dona por Yape y mira cada entrega en video.',
   openGraph: {
     title: 'La Plebe Latinoamérica — Donde otros no llegan, nosotros sí',
-    description: 'Dona en menos de 30 segundos. 100% de trazabilidad con evidencia audiovisual.',
+    description: 'Dona por Yape y mira cada entrega en video.',
     locale: 'es_PE',
     type: 'website',
+    url: '/',
+    images: [
+      {
+        url: '/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Integrante de La Plebe con una señora mayor durante una entrega de víveres',
+      },
+    ],
   },
 };
 
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#F2EFE9' },
-    { media: '(prefers-color-scheme: dark)', color: '#070809' },
+    { media: '(prefers-color-scheme: dark)', color: '#11110F' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -61,6 +76,16 @@ export const viewport: Viewport = {
  * Por defecto siempre arranca en claro; el modo oscuro solo se activa si la
  * persona lo eligió antes con el toggle (no sigue la preferencia del sistema).
  */
+/** Le dice a los buscadores qué perfiles son de la organización. */
+const organizacion = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: BRAND.nombre,
+  url: sitio,
+  email: BRAND.email,
+  sameAs: [BRAND.tiktok, BRAND.instagram, BRAND.facebook],
+});
+
 const noFlash = `(function(){try{var s=localStorage.getItem('lp-theme');document.documentElement.classList.toggle('dark',s==='dark')}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -68,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es-PE" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlash }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: organizacion }} />
       </head>
       <body className={`${display.variable} ${sans.variable} ${marker.variable} antialiased`}>
         {children}

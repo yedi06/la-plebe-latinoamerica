@@ -14,6 +14,7 @@ export function BotonPrincipal({
   icono,
   className = '',
   tamano = 'lg',
+  disabled = false,
 }: {
   children: ReactNode;
   /** Línea secundaria dentro del botón: texto o, por ejemplo, la fila de logos. */
@@ -23,6 +24,7 @@ export function BotonPrincipal({
   icono?: ReactNode;
   className?: string;
   tamano?: 'lg' | 'md';
+  disabled?: boolean;
 }) {
   const alto = tamano === 'lg' ? 'px-5 py-5 sm:px-6' : 'px-5 py-4';
   const titulo =
@@ -41,7 +43,7 @@ export function BotonPrincipal({
         <span className={`block font-display uppercase leading-none tracking-tight text-ink ${titulo}`}>
           {children}
         </span>
-        {bajada && <span className="mt-2 block text-[12px] leading-snug text-ink/70">{bajada}</span>}
+        {bajada && <span className="mt-2 block text-[12px] leading-snug text-ink/90">{bajada}</span>}
       </span>
       <svg
         viewBox="0 0 24 24"
@@ -58,17 +60,18 @@ export function BotonPrincipal({
     </>
   );
 
-  const base = `group relative isolate flex w-full items-center gap-4 overflow-hidden ${alto} transition active:scale-[.99] ${className}`;
+  const base = `group relative isolate flex w-full items-center gap-4 overflow-hidden ${alto} transition active:scale-[.99] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100 ${className}`;
 
   if (href) {
+    const externo = href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {};
     return (
-      <a href={href} className={base}>
+      <a href={href} {...externo} className={base}>
         {interior}
       </a>
     );
   }
   return (
-    <button type="button" onClick={onClick} className={base}>
+    <button type="button" onClick={onClick} disabled={disabled} className={base}>
       {interior}
     </button>
   );
@@ -88,10 +91,13 @@ export function BotonSecundario({
   icono?: ReactNode;
   className?: string;
 }) {
+  // Los enlaces a otros sitios (WhatsApp, Gmail) se abren en otra pestaña
+  // para que la persona no pierda la página.
+  const externo = href?.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {};
   const base = `group inline-flex w-full items-center justify-center gap-2 border border-[rgb(var(--line)/var(--line-a))] px-5 py-3.5 font-display text-[15px] uppercase tracking-tight transition hover:border-[rgb(var(--fg)/.45)] active:scale-[.99] ${className}`;
   if (href)
     return (
-      <a href={href} className={base}>
+      <a href={href} {...externo} className={base}>
         {icono}
         {children}
       </a>

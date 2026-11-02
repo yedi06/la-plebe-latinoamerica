@@ -19,3 +19,7 @@ kit media plebe.pdf
 # Logotipos sin procesar. Los que usa la web están ya optimizados
 # en diseno-laplebe/public/logos/
 medios-de-pago/
+
+# Borradores de imagenes y notas de trabajo: no van a un repositorio publico.
+.impeccable/
+Brief - Informacion pendiente del cliente.pdf

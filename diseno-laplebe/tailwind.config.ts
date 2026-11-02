@@ -10,6 +10,8 @@ import type { Config } from 'tailwindcss';
  */
 const config: Config = {
   darkMode: 'class',
+  // En pantallas táctiles el resaltado de `hover:` se queda pegado tras tocar.
+  future: { hoverOnlyWhenSupported: true },
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './lib/**/*.{ts,tsx}'],
   theme: {
     extend: {

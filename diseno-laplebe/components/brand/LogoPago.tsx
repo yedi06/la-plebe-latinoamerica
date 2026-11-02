@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LOGOS_DISPONIBLES } from '@/lib/data';
+import { BILLETERAS_ACTIVAS, LOGOS_DISPONIBLES } from '@/lib/data';
 import { rutaPublica } from '@/lib/ruta';
 
 /**
@@ -74,25 +74,12 @@ export function LogoPago({
  * Sin pastilla blanca: el logo va directo sobre el degradado del botón.
  */
 export function LogosEnBoton({ className = '' }: { className?: string }) {
-  /*
-    Seis, no diez. Con diez se desbordaba a una segunda línea y dejaba un logo
-    huérfano en móvil, que es lo que peor se ve. Estos seis caben en una sola
-    fila a 375 px y cubren lo que de verdad usa la gente en Perú; el resto de
-    medios aparece en el selector de pago, que es donde se eligen.
-  */
-  const medios = [
-    { id: 'yape', nombre: 'Yape' },
-    { id: 'plin', nombre: 'Plin' },
-    { id: 'visa', nombre: 'Visa' },
-    { id: 'mastercard', nombre: 'Mastercard' },
-    { id: 'amex', nombre: 'American Express' },
-  ];
+  // Solo los medios que de verdad se pueden usar hoy.
   return (
     <span className={`flex flex-wrap items-center gap-x-2.5 gap-y-1.5 ${className}`}>
-      {medios.map((m) => (
-        <LogoPago key={m.id} id={m.id} nombre={m.nombre} alto="h-[14px]" />
+      {BILLETERAS_ACTIVAS.map((m) => (
+        <LogoPago key={m.id} id={m.id} nombre={m.nombre} alto="h-[18px]" />
       ))}
-      <span className="text-[10.5px] font-semibold text-ink/55">y más</span>
     </span>
   );
 }
