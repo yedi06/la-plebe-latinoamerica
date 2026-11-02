@@ -7,7 +7,8 @@ const nextConfig = {
   // SSG puro: exporta HTML estático (CDN-friendly, TTFB mínimo).
   output: 'export',
   images: { unoptimized: true },
-  trailingSlash: true,
+  // Direcciones sin barra final: laplebelatam.org/donar.
+  trailingSlash: false,
   reactStrictMode: true,
 };
 

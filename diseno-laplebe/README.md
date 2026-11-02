@@ -19,8 +19,8 @@ Variables opcionales de build:
 
 ## Secciones
 
-Cada una tiene su enlace, para usarlo por ejemplo en la bio de TikTok: `#inicio`, `#nosotros`,
-`#donar` y `#empresas`.
+Cada una tiene su propia dirección, para usarla por ejemplo en la bio de TikTok:
+`laplebelatam.org/nosotros`, `/donar` y `/empresas`. Los enlaces antiguos con `#donar` siguen funcionando.
 
 ## Agregar un medio de pago
 
@@ -32,8 +32,9 @@ y `qr` con la ruta de la imagen en `public/`. El medio aparece solo. Un medio si
 ```
 app/
   layout.tsx          fuentes, metadatos, script anti-flash de tema
-  page.tsx            la página: secciones y navegación
+  page.tsx            Inicio; nosotros/, donar/ y empresas/ son las otras direcciones
 components/
+  Sitio.tsx           la web completa: secciones, navegación y cortina
   brand/              Claim, iconos, Polaroid, LogoPago, ThemeToggle
   donate/             Capa (ventana), DonationSheet (flujo), Checkout, RegistroMensual
   media/              embed de TikTok
